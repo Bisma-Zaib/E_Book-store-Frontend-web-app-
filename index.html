@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quillquest</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <a href="contact.html"></a>
+    <a href="about.html"></a>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Rubik:wght@300;400;500;700&family=Yesteryear&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+    <!--Navigation Bar-->
+    <nav class="navbar">
+        <div class="logo"><a href="/index.html">QuillQuest</a></div>
+        <div class="search-container">
+            <form class="search-form" onsubmit="searchBooks(event)">
+                <input type="text" class="search-input" id="searchInput" placeholder="Enter the title or author of the book">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+        <div class="nav-links">
+            <a href="categories.html">Browse</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="list.html">My Lists</a>
+        </div>
+        <script>
+            // Function to handle form submission and redirect to search results page
+            function searchBooks(event) {
+                event.preventDefault();
+                const searchTerm = document.getElementById('searchInput').value;
+                window.location.href = `search-results.html?q=${encodeURIComponent(searchTerm)}`;
+            }
+        </script>
+    </nav>
+<div class="bgfix">
+
+    <!--QuillQuest Logo and Catchphrase-->
+    <div class="splash">
+        <br><br><br><br><br><br>
+        <div class="tc-container">
+        <img src="images/QuillQuest3white.svg" alt="QuillQuest">
+        <img class="top-img" src="images/QuillQuest3.svg" alt="QuillQuest">
+        </div>
+        <p id="catch">Enter as a <span style="color: teal;">Wanderer</span>, Leave as a <span style="color: teal;">Storyteller</span>.</p>
+        <br><br><br><br><br><br>
+    </div>
+   
+ <!-- features  -->
+ 
+ <section id="feature">
+    <div class="title-text">
+        <p>CURATORS</p>
+        <h1>our <span style="color: teal;">favorite</span> books:</h1>
+    </div>
+   <!--Recommended books-->
+<div class="contentbg">
+    <br><br><br>
+<div class="leftalign">
+    <div class="box2">
+        <a href="/books.html?id=9jhi2bY3GkAC&title=No%20Longer%20Human" style="text-decoration: none;"><h1>No Longer Human</h1></a>
+        <h2>By: Osamu Dazai</h2>
+        <p>The poignant and fascinating story of a young man who is caught between the breakup of the traditions of a northern Japanese aristocratic family and the impact of Western ideas. <br><br>
+
+        Portraying himself as a failure, the protagonist of Osamu Dazai's No Longer Human narrates a seemingly normal life even while he feels himself incapable of understanding human beings. Oba Yozo's attempts to reconcile himself to the world around him begin in early childhood, continue through high school, where he becomes a "clown" to mask his alienation, and eventually lead to a failed suicide attempt as an adult. Without sentimentality, he records the casual cruelties of life and its fleeting moments of human connection and tenderness.</p>
+    </div>
+    <img src="./images/NLH.jpg" alt="No Longer Human" height="700">
+</div>
+
+<div class="rightalign">
+    <img src="./images/vinland.jpg" alt="Vinland Saga" height="700">
+    <div class="box2">
+        <a href="books.html?id=bgfzDQAAQBAJ&title=Vinland%20Saga" style="text-decoration: none;"><h1>Vinland Saga</h1></a>
+        <h2>By: Makoto Yukimura</h2>
+        <p>"Vinland Saga" is an epic historical manga series written and illustrated by Makoto Yukimura. The narrative unfolds during the Viking Age and revolves around the life of Thorfinn, a young and skilled warrior. Initially driven by a thirst for revenge against the mercenary leader Askeladd for the death of his father, Thorfinn's journey becomes a complex exploration of honor, morality, and the consequences of violence. <br><br>
+
+            Set against the backdrop of historical events and figures, "Vinland Saga" takes readers on a gripping adventure filled with battles, political intrigue, and personal growth. Thorfinn's character undergoes a profound transformation as he grapples with the harsh realities of war, confronts the moral implications of his actions, and questions the very nature of honor and vengeance.</p>
+    </div>
+</div>
+
+<div class="leftalign">
+    <div class="box2">
+        <a href="/books.html?id=yxIHAemJKM4C&title=Pride%20and%20Prejudice" style="text-decoration: none;"><h1>Pride and Prejudice</h1></a>
+        <h2>By: Jane Austen</h2>
+        <p>"Pride and Prejudice" by Jane Austen is a captivating tale set against the backdrop of early 19th-century England. The story follows Elizabeth Bennet, a quick-witted and independent young woman, as she navigates the intricacies of love and societal expectations. When she crosses paths with the enigmatic Mr. Darcy, a wealthy and reserved gentleman, their initial encounters are marked by misunderstandings and prejudices. <br><br>
+
+            As the narrative unfolds, Austen weaves a compelling exploration of class dynamics, societal norms, and the transformative power of self-reflection. Through Elizabeth's journey, the novel delves into themes of pride, prejudice, and the complexity of human relationships. With its sharp social commentary and memorable characters, "Pride and Prejudice" remains a timeless classic, inviting readers to reflect on the enduring nuances of love and personal growth.</p>
+    </div>
+    <img src="./images/pride.jpg" alt="Pride And Prejudice" height="700">
+</div>
+
+<div class="rightalign">
+    <img src="./images/milena.jpg" alt="Letters to Milena" height="700">
+    <div class="box2">
+        <a href="/books.html?id=syzZCwAAQBAJ&title=Letters%20to%20Milena" style="text-decoration: none;"><h1>Letters to Milena</h1></a>
+        <h2>By: Franz Kafka</h2>
+        <p>"Letters to Milena" is a collection of poignant and deeply personal letters written by Franz Kafka to Milena Jesenská between 1920 and 1922. The letters provide a unique insight into Kafka's thoughts on love, creativity, and the challenges of human relationships during a transformative period in his life. <br> <br>
+
+            Throughout the correspondence, Kafka's prose reflects a profound connection with Milena, a woman he admired for her intellect and spirit. The letters explore themes of longing, vulnerability, and the complexities of communication. Kafka delves into the challenges of expressing oneself authentically, grappling with the limitations of language, and the struggle to bridge the emotional gaps that separate individuals. <br> <br>
+            
+            "Letters to Milena" stands as a testament to Kafka's inner world and the intensity of his emotional experiences. It offers readers a glimpse into the mind of one of the most influential literary figures of the 20th century, revealing his struggles, passions, and the profound impact of his relationship with Milena Jesenská.</p>
+    </div>
+</div>
+
+<br><br><br>
+</div>
+
+
+ <!-- Testimonial -->
+ <section id="Testimonial">
+    <div class="title-text">
+        <p>TESTIMONIALS</p>
+        <h1>hear what these <span style="color: teal;">people</span> have to <span style="color: teal;">say</span>.</h1>
+    </div>
+<div class="Testimonial-row">
+    <div class="Testimonial-col">
+        <div class="user">
+            <img src="./images/img-1.jpg" >
+            <div class="user-info">
+                <h4>Ayaan Lalani <i class="fab fa-twitter" aria-hidden="true"></i> </h4>
+                <small>@subZero666</small>
+            </div>
+        </div>
+        <p>Aside from the joy of escaping into a story, books have also taught me valuable life lessons. They have opened my mind to new perspectives and challenged my beliefs. Every book I read leaves me with a new understanding and a fresh outlook on the world.</p>
+    </div>
+    <div class="Testimonial-col">
+        <div class="user">
+            <img src="./images/img-2.jpg" >
+            <div class="user-info">
+                <h4>عظیم <i class="fab fa-twitter" aria-hidden="true"></i> </h4>
+                <small>@sei***tei13</small>
+            </div>
+        </div>
+        <p>Shoutout to the people over at QuillQuest. <br><br>That site has been my go to for a while now, top notch quality of the service and of the books.</p>
+    </div>
+    <div class="Testimonial-col">
+        <div class="user">
+            <img src="./images/img-3.jpg" >
+            <div class="user-info">
+                <h4>Bisma Khan <i class="fab fa-twitter" aria-hidden="true"></i> </h4>
+                <small>@route****0</small>
+            </div>
+        </div>
+        <p>I recently purchased book from QuillQuest and I'm so glad I did! The price was very reasonable and the content was easy to understand. I would highly recommend this ebook to anyone looking for an informative and helpful resource.</p>
+    </div> 
+</div>
+ </section>
+</div>
+
+ <!-- Footer -->
+
+ <section id="footer">
+    <div class="title-text">
+        <p>CONTACT</p>
+        <h1>got any <span style="color: teal;">queries</span>?</h1>
+    </div>
+    <div class="footer-row">
+        <div class="footer-left">
+            <h1>Active Hours</h1>
+            <p>Wednesday - 3:30pm to 6:30pm</p>
+            <p>CS Lab, 100 Building, SZABIST</p>
+            <p>Clifton Block 5, Karachi, Pakistan</p>
+        </div>
+        <div class="footer-right">
+            <h1>Get In Touch</h1>
+            <p>Ayaan Lanani - bsse2380185@szabist.pk</p>
+            <p>Bisma Zaib Khan - bsse2380186@szabist.pk</p>
+            <p>Muhammad Azeem - bsse2380199@szabist.pk</p>
+        </div>
+    </div>
+ </section>
+</body>
+</html>

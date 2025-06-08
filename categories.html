@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Books API Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <a href="contact.html"></a>
+    <a href="about.html"></a>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Rubik:wght@300;400;500;700&family=Yesteryear&display=swap" rel="stylesheet">
+    <style>
+
+        h2{
+            font-family: 'Ephesis',cursive;
+            font-size: 100px;
+            padding: 2%;
+            text-align: center;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #categories {
+            padding: 0 1%;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        #books {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 0 -10px; /* Add margin to the sides */
+
+        }
+        .book {
+            width: calc(12.5% - 20px); /* 8 books per row */
+            margin: 30px;
+            padding: 10px;
+            border: 3px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .book img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        #loadMoreBtn {
+            color: white;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            text-align: center;
+            display: none; /* Initially hide the button */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .buttonstyle{
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+        .center{
+            font-family: "rubik";
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><a href="/index.html">QuillQuest</a></div>
+        <div class="search-container">
+            <form class="search-form" onsubmit="searchBooks(event)">
+                <input type="text" class="search-input" id="searchInput" placeholder="Enter the title or author of the book">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+        <div class="nav-links">
+            <a href="categories.html">Browse</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="list.html">My Lists</a>
+        </div>
+        <script>
+            // Function to handle form submission and redirect to search results page
+            function searchBooks(event) {
+                event.preventDefault();
+                const searchTerm = document.getElementById('searchInput').value;
+                window.location.href = `search-results.html?q=${encodeURIComponent(searchTerm)}`;
+            }
+        </script>
+    </nav>
+
+
+    <h2>Categories</h2>
+    
+    <div id="categories">
+        <button class="buttonstyle" onclick="fetchBooks('Art')"><img src="/images/buttonteal.svg" alt="Art" height="50px"><div class="center">Art</div></button>
+        <button class="buttonstyle" onclick="fetchBooks('Biography')"><img src="/images/buttonteal.svg" alt="Biography" height="50px"><div class="center">Biography</div></button>
+        <button class="buttonstyle" onclick="fetchBooks('Comics')"><img src="/images/buttonteal.svg" alt="Comics" height="50px"><div class="center">Comics</div></button>
+        <button class="buttonstyle" onclick="fetchBooks('Fantasy')"><img src="/images/buttonteal.svg" alt="Fantasy" height="50px"><div class="center">Fantasy</div></button>
+        <button class="buttonstyle" onclick="fetchBooks('History')"><img src="/images/buttonteal.svg" alt="History" height="50px"><div class="center">History</div></button>
+        <button class="buttonstyle" onclick="fetchBooks('Horror')"><img src="/images/buttonteal.svg" alt="Horror" height="50px"><div class="center">Horror</div></button>
+        <button class="buttonstyle" onclick="fetchBooks('Manga')"><img src="/images/buttonteal.svg" alt="Manga" height="50px"><div class="center">Manga</div></button>
+        <button class="buttonstyle" onclick="fetchBooks('Mystery')"><img src="/images/buttonteal.svg" alt="Mystery" height="50px"><div class="center">Mystery</div></button>
+        <button class="buttonstyle" onclick="fetchBooks('Poetry')"><img src="/images/buttonteal.svg" alt="Poetry" height="50px"><div class="center">Poetry</div></button>
+        <button class="buttonstyle" onclick="fetchBooks('Romance')"><img src="/images/buttonteal.svg" alt="Romance" height="50px"><div class="center">Romance</div></button>
+        <button class="buttonstyle" onclick="fetchBooks('Sci-Fi')"><img src="/images/buttonteal.svg" alt="Sci-Fi" height="50px"><div class="center">Sci-Fi</div></button>
+        <!-- Add more categories as needed -->
+    </div>
+
+    <div id="books"></div>
+
+    <button id="loadMoreBtn" onclick="loadMoreBooks()"><img src="/images/buttonteal.svg" alt="Load More" height="50px"><div class="center">More</div></button>
+    <br><br><br>
+
+    <script>
+        let startIndex = 0;
+        let activeCategory = '';
+        let storedState = JSON.parse(localStorage.getItem('pageState')) || {};
+
+        // Restore the page state
+        if (storedState) {
+            startIndex = storedState.startIndex || 0;
+            activeCategory = storedState.activeCategory || '';
+            document.getElementById('books').innerHTML = storedState.booksHtml || '';
+            document.getElementById('loadMoreBtn').style.display = storedState.loadMoreBtnDisplay || 'none';
+            window.scrollTo(0, storedState.scrollPosition || 0);
+        }
+
+        function fetchBooks(category) {
+            // Update the active category
+            activeCategory = category;
+
+            // Clear existing books
+            document.getElementById('books').innerHTML = '';
+
+            // Display or hide the "Load More" button based on category selection
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            loadMoreBtn.style.display = category ? 'block' : 'none';
+
+            // Google Books API URL with orderBy parameter for popularity
+            const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${category}&startIndex=${startIndex}&maxResults=32&orderBy=relevance`;
+
+            // Fetch data from the API
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    displayBooks(data.items);
+                    // Save the page state
+                    savePageState();
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        function displayBooks(books) {
+            const booksContainer = document.getElementById('books');
+
+            books.forEach(book => {
+                const title = book.volumeInfo.title;
+                const authors = book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author';
+                const thumbnail = book.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150';
+
+                const bookHtml = `
+                    <div class="book" onclick="openBook('${book.id}', '${title}')">
+                        <img src="${thumbnail}" alt="${title}">
+                        <h3>${title}</h3>
+                        <p>Author(s): ${authors}</p>
+                    </div>
+                `;
+
+                booksContainer.innerHTML += bookHtml;
+            });
+        }
+
+        function openBook(bookId, title) {
+            // Open the book details page with the book ID as a query parameter
+            window.location.href = `books.html?id=${bookId}&title=${encodeURIComponent(title)}`;
+        }
+
+        function loadMoreBooks() {
+            // Increment startIndex to get the next set of books
+            startIndex += 32;
+
+            const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${activeCategory}&startIndex=${startIndex}&maxResults=32&orderBy=relevance`;
+
+            // Fetch data from the API
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    displayBooks(data.items);
+                    // Save the page state
+                    savePageState();
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        function savePageState() {
+            // Save the current state to localStorage
+            const pageState = {
+                startIndex: startIndex,
+                activeCategory: activeCategory,
+                booksHtml: document.getElementById('books').innerHTML,
+                loadMoreBtnDisplay: document.getElementById('loadMoreBtn').style.display,
+                scrollPosition: window.scrollY
+            };
+            localStorage.setItem('pageState', JSON.stringify(pageState));
+        }
+    </script>
+
+    <!-- Footer -->
+
+ <section id="footer">
+    <div class="title-text">
+        <p>CONTACT</p>
+        <h1>got any <span style="color: teal;">queries</span>?</h1>
+    </div>
+    <div class="footer-row">
+        <div class="footer-left">
+            <h1>Active Hours</h1>
+            <p>Wednesday - 3:30pm to 6:30pm</p>
+            <p>CS Lab, 100 Building, SZABIST</p>
+            <p>Clifton Block 5, Karachi, Pakistan</p>
+        </div>
+        <div class="footer-right">
+            <h1>Get In Touch</h1>
+            <p>Ayaan Lanani - bsse2380185@szabist.pk</p>
+            <p>Bisma Zaib Khan - bsse2380186@szabist.pk</p>
+            <p>Muhammad Azeem - bsse2380199@szabist.pk</p>
+        </div>
+    </div>
+ </section>
+</body>
+</html>

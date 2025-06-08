@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Rubik:wght@300;400;500;700&family=Yesteryear&display=swap" rel="stylesheet">
+
+    <title>About - QuillQuest</title>
+
+    <style>
+         h2{
+            font-family: 'Ephesis',cursive;
+            color: #FFFFFF;
+            font-size: 100px;
+            padding: 2% 3%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><a href="/index.html">QuillQuest</a></div>
+        <div class="search-container">
+            <form class="search-form" onsubmit="searchBooks(event)">
+                <input type="text" class="search-input" id="searchInput" placeholder="Enter the title or author of the book">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+        <div class="nav-links">
+            <a href="categories.html">Browse</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="list.html">My Lists</a>
+        </div>
+        <script>
+            // Function to handle form submission and redirect to search results page
+            function searchBooks(event) {
+                event.preventDefault();
+                const searchTerm = document.getElementById('searchInput').value;
+                window.location.href = `search-results.html?q=${encodeURIComponent(searchTerm)}`;
+            }
+        </script>
+    </nav>
+    
+   <div class="container">
+        <div class="header">
+            <h2>About Us</h2>
+        </div>
+<div class="sub-container">
+        <div class="teams">
+            <img src="./images/undraw_male_avatar_g98d.svg" >
+            <div class="name">Ayaan</div>
+            <div class="desig">Developer</div>
+            <div class="about">Ayaan here! Studying software engineering from SZABIST University with some basic HTML and CSS skills.</div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/login/"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/accounts/login/"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/i/flow/login"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="teams">
+            <img src="./images/undraw_male_avatar_g98d.svg" >
+            <div class="name">Azeem</div>
+            <div class="desig">Developer</div>
+            <div class="about">Was not a fan of books in the beginning. Reading? Who has time for that? That was my mindset. Until one day, power was out whole day so I decided to pick up this novel I was gifted, called "Baccano!". Suffice to say, I became a fan instanty.</div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/login/"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/accounts/login/"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/i/flow/login"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="teams">
+            <img src="./images/undraw_female_avatar_efig.svg" >
+            <div class="name">Bisma</div>
+            <div class="desig">Developer</div>
+            <div class="about">I'm Bisma Zaib. Currently pursuing a software engineer degree from szabist. I like reading books.</div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/login/"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/accounts/login/"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/i/flow/login"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+   </div>
+
+   <!-- Footer -->
+
+ <section id="footer">
+    <div class="title-text">
+        <p>CONTACT</p>
+        <h1>got any <span style="color: teal;">queries</span>?</h1>
+    </div>
+    <div class="footer-row">
+        <div class="footer-left">
+            <h1>Active Hours</h1>
+            <p>Wednesday - 3:30pm to 6:30pm</p>
+            <p>CS Lab, 100 Building, SZABIST</p>
+            <p>Clifton Block 5, Karachi, Pakistan</p>
+        </div>
+        <div class="footer-right">
+            <h1>Get In Touch</h1>
+            <p>Ayaan Lanani - bsse2380185@szabist.pk</p>
+            <p>Bisma Zaib Khan - bsse2380186@szabist.pk</p>
+            <p>Muhammad Azeem - bsse2380199@szabist.pk</p>
+        </div>
+    </div>
+ </section>
+</body>
+</html>

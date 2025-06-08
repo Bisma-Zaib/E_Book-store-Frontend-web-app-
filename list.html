@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <a href="contact.html"></a>
+    <a href="about.html"></a>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Rubik:wght@300;400;500;700&family=Yesteryear&display=swap" rel="stylesheet">
+    <title>My List</title>
+    <style>
+        h2{
+            font-family: 'Ephesis',cursive;
+            font-size: 100px;
+            padding: 2%;
+            text-align: center;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #myList {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 0 -10px; /* Add margin to the sides */
+        }
+        .book {
+            width: calc(12.5% - 20px); /* 8 books per row */
+            margin: 30px;
+            padding: 10px;
+            border: 5px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .book img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        #removeBtn {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #FF0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><a href="/index.html">QuillQuest</a></div>
+        <div class="search-container">
+            <form class="search-form" onsubmit="searchBooks(event)">
+                <input type="text" class="search-input" id="searchInput" placeholder="Enter the title or author of the book">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+        <div class="nav-links">
+            <a href="categories.html">Browse</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="list.html">My Lists</a>
+        </div>
+        <script>
+            // Function to handle form submission and redirect to search results page
+            function searchBooks(event) {
+                event.preventDefault();
+                const searchTerm = document.getElementById('searchInput').value;
+                window.location.href = `search-results.html?q=${encodeURIComponent(searchTerm)}`;
+            }
+        </script>
+    </nav>
+
+
+    <h2>My List</h2>
+<div id="myList"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the current list from localStorage
+        const myList = JSON.parse(localStorage.getItem('myList')) || [];
+
+        // Display books in the list
+        displayBooksInList(myList);
+    });
+
+    function displayBooksInList(myList) {
+        const myListContainer = document.getElementById('myList');
+
+        // Check if the list is not empty
+        if (myList.length > 0) {
+            myList.forEach(bookId => {
+                // Create a link to the book.html page with the bookId as a query parameter
+                const bookLink = `books.html?id=${bookId}`;
+
+                // Fetch book details from the API using the book ID
+                fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const title = data.volumeInfo.title;
+                        const authors = data.volumeInfo.authors ? data.volumeInfo.authors.join(', ') : 'Unknown Author';
+                        const thumbnail = data.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150';
+
+                        const bookHtml = `
+                            <div class="book">
+                                <a href="${bookLink}">
+                                    <img src="${thumbnail}" alt="${title}">
+                                    <h3>${title}</h3>
+                                    <p>Author(s): ${authors}</p>
+                                </a>
+                                <button id="removeBtn" onclick="removeFromMyList('${bookId}')">Remove from My List</button>
+                            </div>
+                        `;
+
+                        myListContainer.innerHTML += bookHtml;
+                    })
+                    .catch(error => console.error('Error fetching book details:', error));
+            });
+        } else {
+            myListContainer.innerHTML = '<p>No books in My List.</p>';
+        }
+    }
+
+    function removeFromMyList(bookId) {
+        // Get the current list from localStorage
+        const myList = JSON.parse(localStorage.getItem('myList')) || [];
+
+        // Remove the book ID from the list
+        const updatedList = myList.filter(id => id !== bookId);
+
+        // Save the updated list to localStorage
+        localStorage.setItem('myList', JSON.stringify(updatedList));
+
+        // Clear the current list display
+        document.getElementById('myList').innerHTML = '';
+
+        // Display the updated list
+        displayBooksInList(updatedList);
+    }
+</script>
+
+    <!-- Footer -->
+
+ <section id="footer">
+    <div class="title-text">
+        <p>CONTACT</p>
+        <h1>got any <span style="color: teal;">queries</span>?</h1>
+    </div>
+    <div class="footer-row">
+        <div class="footer-left">
+            <h1>Active Hours</h1>
+            <p>Wednesday - 3:30pm to 6:30pm</p>
+            <p>CS Lab, 100 Building, SZABIST</p>
+            <p>Clifton Block 5, Karachi, Pakistan</p>
+        </div>
+        <div class="footer-right">
+            <h1>Get In Touch</h1>
+            <p>Ayaan Lanani - bsse2380185@szabist.pk</p>
+            <p>Bisma Zaib Khan - bsse2380186@szabist.pk</p>
+            <p>Muhammad Azeem - bsse2380199@szabist.pk</p>
+        </div>
+    </div>
+ </section>
+</body>
+</html>
