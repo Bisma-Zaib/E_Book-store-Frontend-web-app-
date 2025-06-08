@@ -42,6 +42,6 @@ No installation required - this is a frontend-only project that runs directly in
 
 ## Team
 
-- **Ayaan Lalani** - Developer (bsse2380185@szabist.pk)
-- **Bisma Zaib Khan** - Developer (bsse2380186@szabist.pk)
-- **Muhammad Azeem** - Developer (bsse2380199@szabist.pk)
+- **Bisma Zaib Khan** - Developer 
+- **Muhammad Azeem** - Developer
+- **Ayaan Lalani** - Developer
